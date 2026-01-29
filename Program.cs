@@ -1,44 +1,60 @@
 ﻿using Mission4;
-using System.ComponentModel.Design;
 
-support sc = new support();
+Support sc = new Support();
 
 Console.WriteLine("Welcome to Tic-Tac-Toe");
+
+List<string> board = new List<string>();
+for (int i = 0; i < 9; i++)
+{
+    board.Add(" ");
+}
 
 List<string> choicesPlayerOne = new List<string>();
 List<string> choicesPlayerTwo = new List<string>();
 
-// Validate Player Guess
-public bool ValidateChoice(string choice,
-selection
-if (choice.Length != 1)
+bool gameOver = false;
+int currentPlayer = 1;
+
+sc.printBoard(board);
+
+while (!gameOver)
 {
-    Console.WriteLine("Guess must be equal to one value");
-    choice = false;
+    string symbol = (currentPlayer == 1) ? "X" : "O";
+
+    Console.Write($"Player {currentPlayer} ({symbol}), enter your choice (1-9): ");
+    string choice = Console.ReadLine() ?? "";
+
+    while (!ValidateChoice(choice, choicesPlayerOne, choicesPlayerTwo))
+    {
+        Console.WriteLine("Invalid choice. Must be 1-9 and not already taken.");
+        Console.Write($"Player {currentPlayer} ({symbol}), enter your choice (1-9): ");
+        choice = Console.ReadLine() ?? "";
+    }
+
+    if (currentPlayer == 1) choicesPlayerOne.Add(choice);
+    else choicesPlayerTwo.Add(choice);
+
+    int index = int.Parse(choice) - 1;
+    board[index] = symbol;
+
+    sc.printBoard(board);
+
+    gameOver = sc.CheckWinner(board);
+
+    if (!gameOver)
+        currentPlayer = (currentPlayer == 1) ? 2 : 1;
 }
-else if (player1choice != "1" || player1choice != "2" || player1choice != "3" || player1choice != "4" || player1choice != "5" || player1choice != "6" || player1choice != "7"
-    || player1choice != "8" || player1choice != "9")
+
+bool ValidateChoice(string choice, List<string> p1Choices, List<string> p2Choices)
 {
-    Console.WriteLine("Choice must be 1-9");
-    choice = false;
+    if (choice.Length != 1 || !"123456789".Contains(choice))
+        return false;
+
+    if (p1Choices.Contains(choice) || p2Choices.Contains(choice))
+        return false;
+
+    return true;
 }
-else if (choicesPlayerOne.Contains(player1choice || choicesPlayerTwo.Contains(player1choice)
-{
-    Console.WriteLine("This choice is taken");
-}
 
 
-Console.WriteLine("Player 1, Enter your choice in the array: ");
-string player1choice = Console.ReadLine();
-
-
-
-Console.WriteLine("Player 2, Enter your choice in the array: ");
-string player2choice = Console.ReadLine();
-
-
-do 
-{
-    
-}
-while (!CheckWinner);
