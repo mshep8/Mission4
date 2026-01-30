@@ -2,6 +2,10 @@
 // Group 2-11
 // Mary Catherine Shepherd, Elsie Evans, Levi Speirs, Brit Meek
 
+// This program leads two users through a simple Tic-Tac-Toe game and announces
+// a winner at the end based off what positions they choose in this back and 
+// forth game.
+
 using Mission4;
 
 // Initate new supprt instance
@@ -38,7 +42,7 @@ while (!gameOver)
     string choice = Console.ReadLine() ?? "";
 
     // Check choice in the Validate Choice method. If not valid, prompt user to try again
-    while (!ValidateChoice(choice, choicesPlayerOne, choicesPlayerTwo))
+    while (!sc.ValidateChoice(choice, choicesPlayerOne, choicesPlayerTwo))
     {
         Console.WriteLine("Invalid choice. Must be 1-9 and not already taken.");
         Console.Write($"Player {currentPlayer} ({symbol}), enter your choice (1-9): ");
@@ -62,17 +66,3 @@ while (!gameOver)
     if (!gameOver)
         currentPlayer = (currentPlayer == 1) ? 2 : 1;
 }
-
-// Validate players choice, check lenght, check if num, check if already taken
-bool ValidateChoice(string choice, List<string> p1Choices, List<string> p2Choices)
-{
-    if (choice.Length != 1 || !"123456789".Contains(choice))
-        return false;
-
-    if (p1Choices.Contains(choice) || p2Choices.Contains(choice))
-        return false;
-
-    return true;
-}
-
-

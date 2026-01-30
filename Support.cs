@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Tic-Tac-Toe Game
+// Group 2-11
+// Mary Catherine Shepherd, Elsie Evans, Levi Speirs, Brit Meek
+
+using System;
 using System.Collections.Generic;
 using System.Linq; // <-- needed for Select(), ToList(), Contains()
 using System.Text;
@@ -63,6 +67,17 @@ namespace Mission4
             }
 
             return false; // game still going
+        }
+        // Validate players choice, check lenght, check if num, check if already taken
+        public bool ValidateChoice(string choice, List<string> p1Choices, List<string> p2Choices)
+        {
+            if (choice.Length != 1 || !"123456789".Contains(choice))
+                return false;
+
+            if (p1Choices.Contains(choice) || p2Choices.Contains(choice))
+                return false;
+
+            return true;
         }
     }
 }
