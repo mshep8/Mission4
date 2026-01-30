@@ -23,9 +23,9 @@ namespace Mission4
             }
 
             Console.WriteLine($"{normBoard[0]} | {normBoard[1]} | {normBoard[2]}");
-            Console.WriteLine("-------------");
+            Console.WriteLine("----------");
             Console.WriteLine($"{normBoard[3]} | {normBoard[4]} | {normBoard[5]}");
-            Console.WriteLine("-------------");
+            Console.WriteLine("----------");
             Console.WriteLine($"{normBoard[6]} | {normBoard[7]} | {normBoard[8]}");
         }
 
